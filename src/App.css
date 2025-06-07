@@ -1,38 +1,321 @@
-.App {
-  text-align: center;
+/* Base reset */
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-container {
+  position: relative;
   min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0;
+  padding-bottom: 150px;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  margin: 80px auto 40px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  box-shadow: 0 0 20px 5px gold;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  border: 2px solid gold;
+  animation: glowBox 2s infinite alternate;
+}
+
+@keyframes glowBox {
+  from { box-shadow: 0 0 20px 5px gold; }
+  to { box-shadow: 0 0 40px 10px #ffd700; }
+}
+
+.xgrok-logo {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.welcome-text {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  color: #00f5c3;
+  text-shadow: 0 0 10px #00f5c3, 0 0 20px #00ffe1;
+}
+
+.live-earned-title,
+.timer-text {
+  font-size: 1.4rem;
+  color: #ffeb3b !important;
+  text-shadow: 0 0 5px #ffeb3b;
+}
+
+.live-earned-amount {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: gold;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px gold;
+}
+
+.claim-button-active {
+  background: gold;
+  color: black;
+  font-weight: bold;
+  padding: 15px 50px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 20px gold;
+  transition: 0.3s ease;
+}
+.claim-button-active:hover {
+  background: #ffd700;
+}
+
+.claim-button-disabled {
+  background: #444;
+  color: #aaa;
+  padding: 15px 50px;
+  font-size: 1.4rem;
+  border-radius: 30px;
+  cursor: not-allowed;
+}
+
+.tasks-section {
+  margin: 40px auto;
+  max-width: 700px;
+  z-index: 10;
+  position: relative;
+}
+
+.task-card {
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid gold;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px gold;
+  transition: 0.3s;
+}
+.task-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px #ffcc00;
+}
+.task-card span {
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.info-section {
+  max-width: 700px;
+  margin: 60px auto;
+  z-index: 10;
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  border-left: 4px solid gold;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gold;
+}
+
+.info-section h2 {
+  color: gold;
+  text-shadow: 0 0 10px gold;
+  margin-bottom: 15px;
+}
+
+.info-section ul {
+  list-style: none;
+  padding: 0;
+}
+.info-section li {
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.partners {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 10;
+  margin: 60px 0 20px;
+}
+.partners-title {
+  text-align: center;
+  color: gold;
+  font-size: 1.6rem;
+  text-shadow: 0 0 10px gold;
+  margin-bottom: 10px;
+}
+.partners-slider {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+}
+.partners-slider img {
+  height: 60px;
+  width: auto;
+  max-width: 100px;
+  margin: 0 20px;
+  display: inline-block;
+  filter: drop-shadow(0 0 6px gold);
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.openai-logo {
+  height: 60px !important;
+  width: 100px !important;
+  max-width: 100px;
+  object-fit: contain;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 6px gold);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.claimed-popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: gold;
+  color: black;
+  padding: 20px 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 20px;
+  box-shadow: 0 0 20px gold;
+  z-index: 9999;
+  animation: fadeOut 2.5s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  10% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  90% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+
+.golden-text {
+  color: gold;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 30px;
+  text-shadow: 0 0 10px gold;
+}
+
+/* === XGROK AI CHAT EKLENTİSİ === */
+.xgrok-ai-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #00f5c3;
+  color: black;
+  font-size: 24px;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 20px #00f5c3;
+  z-index: 999;
+}
+
+.xgrok-ai-chat-window {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  width: 320px;
+  background: rgba(0,0,0,0.9);
+  border: 2px solid #00f5c3;
+  border-radius: 12px;
+  color: white;
+  font-family: monospace;
+  z-index: 999;
+  box-shadow: 0 0 15px #00ffe1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 1px solid #00f5c3;
+  background: #001f1f;
+}
+
+.chat-logo {
+  height: 30px;
+  margin-right: 10px;
+}
+
+.chat-body {
+  padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  text-align: left;
+  font-size: 14px;
+}
+
+.chat-body .ai {
+  color: #00f5c3;
+}
+
+.chat-body .user {
+  color: #ffffff;
+  text-align: right;
+}
+
+.chat-input {
+  display: flex;
+  padding: 8px;
+  border-top: 1px solid #00f5c3;
+  background: #001f1f;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 6px;
+  background: #111;
   color: white;
+  border: 1px solid #00f5c3;
+  border-radius: 4px;
+  outline: none;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat-input button {
+  background: #00f5c3;
+  border: none;
+  color: black;
+  padding: 6px 10px;
+  margin-left: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
 }
