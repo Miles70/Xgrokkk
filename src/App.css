@@ -9,6 +9,7 @@ html,
   background: black;
   color: white;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .app-container {
@@ -25,6 +26,7 @@ canvas {
   top: 0;
   left: 0;
   z-index: -1;
+  pointer-events: none;
 }
 
 .container {
@@ -157,15 +159,15 @@ canvas {
   max-width: 600px;
   height: 370px;
   margin: 30px auto 0;
-  background: rgba(5, 0, 20, 0.95); /* darker spacey tone */
-  border: 2px solid #7b1fa2; /* Deep purple border */
+  background: rgba(5, 0, 20, 0.95);
+  border: 2px solid #7b1fa2;
   border-radius: 12px;
   color: #ffffff;
   font-family: monospace;
   box-shadow:
-    0 0 35px #00bfff,     /* 💙 Cyberpunk neon blue (main glow) */
-    0 0 20px #9c27b0,     /* 💜 Strong purple base glow */
-    0 0 10px #00e5ff;     /* 💠 Extra electric cyan touch */
+    0 0 35px #00bfff,
+    0 0 20px #9c27b0,
+    0 0 10px #00e5ff;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -230,6 +232,28 @@ canvas {
   border-radius: 4px;
 }
 
+/* Social Links Floating */
+.floating-social-links {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.floating-social-links img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 6px gold);
+}
+
+.floating-social-links img:hover {
+  transform: scale(1.2);
+}
+
 /* Section box styling for roadmap, tokenomics, and partners */
 .section-box {
   max-width: 700px;
@@ -240,4 +264,54 @@ canvas {
   border: 2px solid gold;
   box-shadow: 0 0 20px 5px gold;
   backdrop-filter: blur(5px);
+}
+
+/* Connect Wallet Butonu - Neon Hareketli */
+.connect-btn {
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(270deg, #7b1fa2, #00bfff, #7b1fa2);
+  background-size: 600% 600%;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  animation: gradientShift 6s ease infinite;
+  box-shadow:
+    0 0 10px #7b1fa2,
+    0 0 20px #00bfff,
+    0 0 30px #7b1fa2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.connect-btn:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 15px #ff00cc,
+    0 0 30px #00ffff,
+    0 0 45px #ff00cc;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.wallet-address {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #1b0033;
+  color: white;
+  padding: 8px 14px;
+  border: 1px solid #8a2be2;
+  border-radius: 8px;
+  font-family: monospace;
+  box-shadow: 0 0 15px #7b1fa2;
+  z-index: 1000;
 }

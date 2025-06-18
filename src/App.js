@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import StarsBackground from './StarsBackground';
 
 function App() {
   const [messages, setMessages] = useState([
-    { from: 'ai', text: 'Selam 👋 Ben XGROK AI. Sana nasıl yardımcı olabilirim?' }
+    { from: 'ai', text: "Hello 👋 I'm XGROK AI. How can I assist you today?" }
   ]);
   const [input, setInput] = useState('');
+  const [account, setAccount] = useState(null);
 
   const sendMessage = () => {
     if (!input.trim()) return;
@@ -22,12 +23,42 @@ function App() {
     if (lower.includes('farm')) return 'XGROK Farm, token kazanmanı sağlayan sistemdir!';
     if (lower.includes('claim')) return 'Claim butonuna basarak kazandığın tokenları alırsın.';
     if (lower.includes('token')) return 'XGROK token yakında ön satışa çıkacak!';
-    return 'Şu anda bunu anlayamadım, ama yakında her şeyi bileceğim! 🧠';
+    return "I couldn't understand that right now, but soon I'll know everything! 🧠";
   };
+
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        setAccount(accounts[0]);
+      } catch (error) {
+        console.error("MetaMask bağlantısı reddedildi:", error);
+      }
+    } else {
+      alert("MetaMask yüklü değil! Lütfen MetaMask tarayıcı eklentisini kur.");
+    }
+  };
+
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        setAccount(accounts[0]);
+      });
+    }
+  }, []);
 
   return (
     <div className="app-container">
       <StarsBackground />
+
+      {/* Wallet Button - Top Right */}
+      <div className="wallet-section">
+        {!account ? (
+          <button className="connect-btn" onClick={connectWallet}>Connect Wallet</button>
+        ) : (
+          <div className="wallet-address">🦊 {account.slice(0, 6)}...{account.slice(-4)}</div>
+        )}
+      </div>
 
       <div className="container">
         <img
@@ -52,46 +83,48 @@ function App() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-              placeholder="Mesaj yaz..."
+              placeholder="Type your message..."
             />
-            <button onClick={sendMessage}>Gönder</button>
+            <button onClick={sendMessage}>Send</button>
           </div>
         </div>
       </div>
 
-      {/* TASKS */}
+      {/* HOW TO BUY XGROK */}
       <div className="section-box tasks-section">
         <div className="task-card">
-          📢 <span>Follow on Twitter</span>: Stay updated, claim rewards!
+          🦊 <span>Connect Wallet</span>: Use MetaMask or WalletConnect
         </div>
         <div className="task-card">
-          🔁 <span>Retweet the Post</span>: Spread the word!
+          💳 <span>Buy ETH</span>: Transfer ETH to your wallet
         </div>
         <div className="task-card">
-          👥 <span>Join Telegram</span>: Strengthen the community!
+          🌐 <span>Join Presale</span>: Swap ETH for $XGROK via the presale portal
         </div>
       </div>
 
       {/* ROADMAP */}
       <div className="section-box info-section">
-        <h2>🚀 Roadmap</h2>
+        <h2 style={{ color: '#00bfff' }}>🚀 Roadmap</h2>
         <ul>
-          <li>✅ Presale Launch – 12.09.2025</li>
-          <li>🛠 Staking & Farming Module – 01.10.2025</li>
-          <li>📱 Mobile Compatible Platform – 15.11.2025</li>
-          <li>🌍 Partnerships & Global Launch – 01.01.2026</li>
+          <li><span style={{ color: '#00bfff' }}>Phase 1 – Initialization</span><br />▰▰▰▰▰▰▰▰▰▰ 100%</li>
+          <li><span style={{ color: '#00bfff' }}>Phase 2 – Presale Madness</span><br />▰▰▰▰▰▰▰▱▱▱ 70%</li>
+          <li><span style={{ color: '#00bfff' }}>Phase 3 – Airdrop & Engagement</span><br />▰▰▰▱▱▱▱▱▱▱ 30%</li>
+          <li><span style={{ color: '#00bfff' }}>Phase 4 – Market Expansion</span><br />▰▰▱▱▱▱▱▱▱▱ 20%</li>
+          <li><span style={{ color: '#00bfff' }}>Phase 5 – CEX Quest</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
+          <li><span style={{ color: '#00bfff' }}>Phase 6 – Memevolution</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
         </ul>
       </div>
 
       {/* TOKENOMICS */}
       <div className="section-box info-section">
-        <h2>📊 Tokenomics</h2>
+        <h2 style={{ color: '#00bfff' }}>📊 Tokenomics</h2>
         <ul>
-          <li>Total Supply: 66,000,000,000,000 XGROK</li>
-          <li>Community: 50%</li>
-          <li>Team: 20% (locked for support)</li>
-          <li>Liquidity: 20%</li>
-          <li>Marketing: 10%</li>
+          <li style={{ color: '#00bfff' }}>Total Supply: 666,000,000,000 $XGROK</li>
+          <li style={{ color: '#00bfff' }}>Community: 50%</li>
+          <li style={{ color: '#00bfff' }}>Team: 20% (locked)</li>
+          <li style={{ color: '#00bfff' }}>Liquidity: 20%</li>
+          <li style={{ color: '#00bfff' }}>Marketing: 10%</li>
         </ul>
       </div>
 
@@ -105,6 +138,19 @@ function App() {
           <img src="/partners/solana.png" alt="solana" />
           <img src="/partners/openai.png" alt="openai" className="openai-logo" />
         </div>
+      </div>
+
+      {/* Floating Socials */}
+      <div className="floating-social-links">
+        <a href="https://t.me/Xgrokkk" target="_blank" rel="noopener noreferrer">
+          <img src="/icons/telegram.png" alt="Telegram" />
+        </a>
+        <a href="https://twitter.com/Xgrokkk" target="_blank" rel="noopener noreferrer">
+          <img src="/icons/twitter.png" alt="Twitter" />
+        </a>
+        <a href="https://instagram.com/xgrokkk" target="_blank" rel="noopener noreferrer">
+          <img src="/icons/instagram.png" alt="Instagram" />
+        </a>
       </div>
     </div>
   );
