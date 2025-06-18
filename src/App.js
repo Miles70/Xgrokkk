@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import StarsBackground from './StarsBackground';
+import StarsBackground from './StarsBackground'; // varsa bu dosya projede olmalı!
 
 function App() {
   const [messages, setMessages] = useState([
@@ -51,7 +51,6 @@ function App() {
     <div className="app-container">
       <StarsBackground />
 
-      {/* Wallet Button - Top Right */}
       <div className="wallet-section">
         {!account ? (
           <button className="connect-btn" onClick={connectWallet}>Connect Wallet</button>
@@ -90,7 +89,7 @@ function App() {
         </div>
       </div>
 
-      {/* HOW TO BUY XGROK */}
+      {/* Tasks */}
       <div className="section-box tasks-section">
         <div className="task-card">
           🦊 <span>Connect Wallet</span>: Use MetaMask or WalletConnect
@@ -103,32 +102,32 @@ function App() {
         </div>
       </div>
 
-      {/* ROADMAP */}
+      {/* Roadmap */}
       <div className="section-box info-section">
-        <h2 style={{ color: '#00bfff' }}>🚀 Roadmap</h2>
+        <h2>🚀 Roadmap</h2>
         <ul>
-          <li><span style={{ color: '#00bfff' }}>Phase 1 – Initialization</span><br />▰▰▰▰▰▰▰▰▰▰ 100%</li>
-          <li><span style={{ color: '#00bfff' }}>Phase 2 – Presale Madness</span><br />▰▰▰▰▰▰▰▱▱▱ 70%</li>
-          <li><span style={{ color: '#00bfff' }}>Phase 3 – Airdrop & Engagement</span><br />▰▰▰▱▱▱▱▱▱▱ 30%</li>
-          <li><span style={{ color: '#00bfff' }}>Phase 4 – Market Expansion</span><br />▰▰▱▱▱▱▱▱▱▱ 20%</li>
-          <li><span style={{ color: '#00bfff' }}>Phase 5 – CEX Quest</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
-          <li><span style={{ color: '#00bfff' }}>Phase 6 – Memevolution</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
+          <li><span>Phase 1 – Initialization</span><br />▰▰▰▰▰▰▰▰▰▰ 100%</li>
+          <li><span>Phase 2 – Presale Madness</span><br />▰▰▰▰▰▰▰▱▱▱ 70%</li>
+          <li><span>Phase 3 – Airdrop & Engagement</span><br />▰▰▰▱▱▱▱▱▱▱ 30%</li>
+          <li><span>Phase 4 – Market Expansion</span><br />▰▰▱▱▱▱▱▱▱▱ 20%</li>
+          <li><span>Phase 5 – CEX Quest</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
+          <li><span>Phase 6 – Memevolution</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
         </ul>
       </div>
 
-      {/* TOKENOMICS */}
+      {/* Tokenomics */}
       <div className="section-box info-section">
-        <h2 style={{ color: '#00bfff' }}>📊 Tokenomics</h2>
+        <h2>📊 Tokenomics</h2>
         <ul>
-          <li style={{ color: '#00bfff' }}>Total Supply: 666,000,000,000 $XGROK</li>
-          <li style={{ color: '#00bfff' }}>Community: 50%</li>
-          <li style={{ color: '#00bfff' }}>Team: 20% (locked)</li>
-          <li style={{ color: '#00bfff' }}>Liquidity: 20%</li>
-          <li style={{ color: '#00bfff' }}>Marketing: 10%</li>
+          <li>Total Supply: 666,000,000,000 $XGROK</li>
+          <li>Community: 50%</li>
+          <li>Team: 20% (locked)</li>
+          <li>Liquidity: 20%</li>
+          <li>Marketing: 10%</li>
         </ul>
       </div>
 
-      {/* PARTNERS */}
+      {/* Partners */}
       <div className="section-box partners">
         <div className="partners-title">🤝 Our Partners</div>
         <div className="partners-slider">
@@ -140,7 +139,7 @@ function App() {
         </div>
       </div>
 
-      {/* Floating Socials */}
+      {/* Socials */}
       <div className="floating-social-links">
         <a href="https://t.me/Xgrokkk" target="_blank" rel="noopener noreferrer">
           <img src="/icons/telegram.png" alt="Telegram" />
