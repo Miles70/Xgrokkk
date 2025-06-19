@@ -16,8 +16,7 @@ html,
   position: relative;
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 0;
   padding-bottom: 150px;
 }
@@ -27,10 +26,11 @@ canvas {
   top: 0;
   left: 0;
   z-index: -1;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
-/* Container Style */
 .container {
   position: relative;
   z-index: 10;
@@ -59,7 +59,7 @@ canvas {
   margin: 0 auto 20px auto;
 }
 
-/* Tasks Section */
+/* Task Cards */
 .tasks-section {
   margin: 40px auto;
   max-width: 700px;
@@ -76,12 +76,10 @@ canvas {
   box-shadow: 0 0 15px gold;
   transition: 0.3s;
 }
-
 .task-card:hover {
   transform: scale(1.02);
   box-shadow: 0 0 30px #ffcc00;
 }
-
 .task-card span {
   font-weight: bold;
   color: #ffd700;
@@ -110,11 +108,9 @@ canvas {
   list-style: none;
   padding: 0;
 }
-
 .info-section li {
   padding: 10px 0;
   border-bottom: 1px solid #333;
-  color: #00bfff;
 }
 
 /* Partners */
@@ -126,19 +122,16 @@ canvas {
   margin: 60px 0 20px;
   text-align: center;
 }
-
 .partners-title {
   color: gold;
   font-size: 1.6rem;
   text-shadow: 0 0 10px gold;
   margin-bottom: 10px;
 }
-
 .partners-slider {
   display: inline-block;
   animation: scroll 20s linear infinite;
 }
-
 .partners-slider img {
   height: 60px;
   width: auto;
@@ -149,20 +142,20 @@ canvas {
   object-fit: contain;
   vertical-align: middle;
 }
-
 .openai-logo {
   height: 60px !important;
   width: 100px !important;
+  max-width: 100px;
   object-fit: contain;
+  vertical-align: middle;
   filter: drop-shadow(0 0 6px gold);
 }
-
 @keyframes scroll {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
 
-/* AI Chat */
+/* AI Chat - Cyberpunk Neon Purple + Electric Blue Blend */
 .xgrok-ai-chat-window {
   width: 100%;
   max-width: 600px;
@@ -241,7 +234,7 @@ canvas {
   border-radius: 4px;
 }
 
-/* Floating Social Links */
+/* Social Links Floating */
 .floating-social-links {
   position: fixed;
   bottom: 20px;
@@ -263,7 +256,7 @@ canvas {
   transform: scale(1.2);
 }
 
-/* Section Box */
+/* Section box styling for roadmap, tokenomics, and partners */
 .section-box {
   max-width: 700px;
   margin: 60px auto;
@@ -275,7 +268,7 @@ canvas {
   backdrop-filter: blur(5px);
 }
 
-/* Connect Wallet Button */
+/* Connect Wallet Butonu - Neon Hareketli */
 .connect-btn {
   padding: 10px 20px;
   font-weight: bold;
@@ -323,4 +316,64 @@ canvas {
   font-family: monospace;
   box-shadow: 0 0 15px #7b1fa2;
   z-index: 1000;
+}
+
+/*🔥 Alevli Progress Bar */
+.progress-bar {
+  height: 14px;
+  background: #222;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 10px;
+  box-shadow: inset 0 0 10px #000;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffcc00, gold, #ffaa00);
+  width: 0%;
+  transition: width 1s ease-in-out;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #fff700, #ff9900, #ff3300, transparent);
+  box-shadow:
+    0 0 20px #fff000,
+    0 0 40px #ff8000,
+    0 0 60px #ff4500,
+    0 0 80px #ff3300,
+    0 0 100px #ff0000;
+  animation: flameBurst 0.5s infinite ease-in-out;
+  z-index: 10;
+}
+
+@keyframes flameBurst {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.5) translateY(-5px) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 0.8;
+  }
+}
+
+.progress-label {
+  margin-top: 6px;
+  text-align: right;
+  font-size: 0.9rem;
+  color: #ffd700;
 }

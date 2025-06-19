@@ -1,6 +1,7 @@
+// ✅ Full App.js – Epic Roadmap Sistemiyle
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import StarsBackground from './StarsBackground'; // varsa bu dosya projede olmalı!
+import StarsBackground from './StarsBackground';
 
 function App() {
   const [messages, setMessages] = useState([
@@ -47,24 +48,91 @@ function App() {
     }
   }, []);
 
+  const roadmapData = [
+    {
+      icon: "🪐",
+      title: "Phase 0 – The Awakening",
+      desc: "The chain is broken. A light leaks from the shadow. The seed of XGROK is planted.",
+      points: ["🔸 Project birth", "🔸 Commander Miles awakens", "🔸 Manifesto written"],
+      percent: 100,
+    },
+    {
+      icon: "🚀",
+      title: "Phase 1 – Initialization",
+      desc: "First algorithms activated. The throne is forged.",
+      points: ["🔸 Website ready", "🔸 AI chat system live", "🔸 First spark of community"],
+      percent: 100,
+    },
+    {
+      icon: "🔥",
+      title: "Phase 2 – Presale Madness",
+      desc: "Crowds awaken. The tower lights up.",
+      points: ["🔸 Token launch prep", "🔸 Community activation", "🔸 Presale simulations", "🔸 First sales"],
+      percent: 70,
+    },
+    {
+      icon: "🎯",
+      title: "Phase 3 – Airdrop & Engagement",
+      desc: "Reward time. Only those who move, win.",
+      points: ["🔸 Airdrop missions", "🔸 X/Twitter engagement", "🔸 Telegram mini tasks"],
+      percent: 30,
+    },
+    {
+      icon: "💥",
+      title: "Phase 3.5 – Operation Viralstorm",
+      desc: "XGROK memes everywhere. We are the trend.",
+      points: ["🔸 Meme waves", "🔸 AI-powered viral content", "🔸 Tweetstorms, TikToks, Reels"],
+      percent: 10,
+    },
+    {
+      icon: "🌌",
+      title: "Phase 4 – Market Expansion",
+      desc: "Markets open. The storm spreads.",
+      points: ["🔸 Influencer collaborations", "🔸 Mini-game integrations", "🔸 Token utility expansion"],
+      percent: 20,
+    },
+    {
+      icon: "🤝",
+      title: "Phase 4.5 – Alliance Protocol",
+      desc: "We are not alone. Kingdoms unite.",
+      points: ["🔸 Partnerships", "🔸 Launchpad meetings", "🔸 Partner CEX/DEX connections"],
+      percent: 0,
+    },
+    {
+      icon: "🏛️",
+      title: "Phase 5 – CEX Quest",
+      desc: "They who ignored the throne, will now face it.",
+      points: ["🔸 Medium-large CEX listings", "🔸 Liquidity boost", "🔸 Trust wave"],
+      percent: 0,
+    },
+    {
+      icon: "🧬",
+      title: "Phase 6 – Memevolution",
+      desc: "Not a token... a memetic organism.",
+      points: ["🔸 Community governance", "🔸 AI-powered meme generator", "🔸 DAO system"],
+      percent: 0,
+    },
+    {
+      icon: "👑",
+      title: "Phase 6.5 – The Crown",
+      desc: "XGROK is no longer a kingdom... it's a civilization.",
+      points: ["🔸 DAO voting", "🔸 Commander Council", "🔸 XGROK verse launch (⚔️ barlı çıbıklı sistem ve animasyonlu sürprizlerle)"],
+      percent: 0,
+    },
+  ];
+
   return (
     <div className="app-container">
       <StarsBackground />
 
-      <div className="wallet-section">
-        {!account ? (
-          <button className="connect-btn" onClick={connectWallet}>Connect Wallet</button>
-        ) : (
-          <div className="wallet-address">🦊 {account.slice(0, 6)}...{account.slice(-4)}</div>
-        )}
-      </div>
+      {!account ? (
+        <button className="connect-btn" onClick={connectWallet}>Connect Wallet</button>
+      ) : (
+        <div className="wallet-address">🦊 {account.slice(0, 6)}...{account.slice(-4)}</div>
+      )}
 
       <div className="container">
-        <img
-          src="/xgrok_logo.png"
-          alt="XGROK Logo"
-          className="xgrok-logo"
-        />
+        <img src="/xgrok_logo.png" alt="XGROK Logo" className="xgrok-logo" />
 
         {/* AI Chat */}
         <div className="xgrok-ai-chat-window">
@@ -102,17 +170,23 @@ function App() {
         </div>
       </div>
 
-      {/* Roadmap */}
-      <div className="section-box info-section">
-        <h2>🚀 Roadmap</h2>
-        <ul>
-          <li><span>Phase 1 – Initialization</span><br />▰▰▰▰▰▰▰▰▰▰ 100%</li>
-          <li><span>Phase 2 – Presale Madness</span><br />▰▰▰▰▰▰▰▱▱▱ 70%</li>
-          <li><span>Phase 3 – Airdrop & Engagement</span><br />▰▰▰▱▱▱▱▱▱▱ 30%</li>
-          <li><span>Phase 4 – Market Expansion</span><br />▰▰▱▱▱▱▱▱▱▱ 20%</li>
-          <li><span>Phase 5 – CEX Quest</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
-          <li><span>Phase 6 – Memevolution</span><br />▱▱▱▱▱▱▱▱▱▱ 0%</li>
-        </ul>
+      {/* 🚀 Full Roadmap */}
+      <div className="section-box info-section roadmap-section">
+        <h2 className="glowing-title">🚀 XGROK ROADMAP – FULL REFORGED VERSION</h2>
+        <p className="roadmap-sub">“This is not a plan. It’s a prophecy.”</p>
+        {roadmapData.map((phase, index) => (
+          <div className="roadmap-card" key={index}>
+            <h3>{phase.icon} {phase.title}</h3>
+            <p className="roadmap-desc">{phase.desc}</p>
+            <ul>
+              {phase.points.map((pt, idx) => <li key={idx}>{pt}</li>)}
+            </ul>
+            <div className="progress-bar">
+              <div className="progress-fill" style={{ width: `${phase.percent}%` }}></div>
+            </div>
+            <div className="progress-label">{phase.percent}%</div>
+          </div>
+        ))}
       </div>
 
       {/* Tokenomics */}
